@@ -1,0 +1,27 @@
+{
+  "name": "prisma-node-complete",
+  "version": "1.0.0",
+  "description": "A prisma refresher with node that covers every point about the ORM.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brooksideas/prisma-node-complete.git"
+  },
+  "keywords": [],
+  "author": "Brook Tarekegn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brooksideas/prisma-node-complete/issues"
+  },
+  "homepage": "https://github.com/brooksideas/prisma-node-complete#readme",
+  "devDependencies": {
+    "@types/node": "^18.15.5",
+    "nodemon": "^2.0.21",
+    "prisma": "^4.11.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.2"
+  }
+}

@@ -4,7 +4,7 @@
   "description": "A prisma refresher with node that covers every point about the ORM.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon script.ts"
   },
   "repository": {
     "type": "git",

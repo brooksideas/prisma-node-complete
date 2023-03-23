@@ -47,14 +47,31 @@ async function main() {
     // }
     // })
 
+    // const user = await prisma.userPreference.create({
+    //     data: {
+    //         userPreference: true,
+            
+    //     }
+    // })
+
+
     const user = await prisma.user.update({
         where: {
             id: "fc67ad2d-1c13-4a79-9a5e-74fa19bffa05"
         },
         data:{
-            email: "ydi@gmail.com"
+             age: {
+
+                decrement: 1
+             }, 
+             userPreference:{
+                connect: {
+                    id: "ebeb01d6-afd1-4151-89ec-376732558ff8"
+                }
+             }
         },
         select: {
+            userPreference: true,
              writtenPosts: { 
                 select: {
                     title: true,

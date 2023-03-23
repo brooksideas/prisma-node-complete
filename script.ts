@@ -3,18 +3,22 @@ const prisma = new PrismaClient()
 
 async function main() {
     const user = await prisma.user.findMany({
-        // where:{
-        //     age: 26
-        // },
+        where: {
+            AND: [{
+                name: { endsWith: "k" },
+
+            }, { email: { contains: "@tdasest" } }
+            ],
+        },
         // include:{
         //     userPreference: true
         // },
 
-        orderBy: {
-            age: "asc" //desc
-        },
-        take: 2,
-        skip: 0
+        // orderBy: {
+        //     age: "asc" //desc
+        // },
+        // take: 2,
+        // skip: 0
     })
     console.log(user);
 }

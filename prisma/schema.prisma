@@ -11,16 +11,16 @@ datasource db {
 }
 
 model User {
-  id               String         @id @default(uuid())
+  id               String          @id @default(uuid())
   name             String
-  email            String         @unique
+  email            String          @unique
   age              Int
-  role             Role           @default(BASIC)
+  role             Role            @default(BASIC)
   preferences      Json
-  writtenPosts     Post[]         @relation("WrittenPosts")
-  favioritedPosts  Post[]         @relation("FavoritePosts")
-  userPreference   UserPreference @relation(fields: [userPreferenceId], references: [id])
-  userPreferenceId String         @unique
+  writtenPosts     Post[]          @relation("WrittenPosts")
+  favioritedPosts  Post[]          @relation("FavoritePosts")
+  userPreference   UserPreference? @relation(fields: [userPreferenceId], references: [id])
+  userPreferenceId String?         @unique
 }
 
 model Post {

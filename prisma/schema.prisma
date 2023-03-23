@@ -11,21 +11,23 @@ datasource db {
 }
 
 model User {
-  id              String          @id @default(uuid())
-  name            String
-  email           String
-  isAdmin         Boolean
-  preferences     Json
-  writtenPosts    Post[]          @relation("WrittenPosts")
-  favioritedPosts Post[]          @relation("FavoritePosts")
-  userPreference  UserPreference?
+  id               String         @id @default(uuid())
+  name             String
+  email            String         @unique
+  age              Int
+  role             Role           @default(BASIC)
+  preferences      Json
+  writtenPosts     Post[]         @relation("WrittenPosts")
+  favioritedPosts  Post[]         @relation("FavoritePosts")
+  userPreference   UserPreference @relation(fields: [userPreferenceId], references: [id])
+  userPreferenceId String         @unique
 }
 
 model Post {
   id            String     @id @default(uuid())
   rating        Float
-  createdAt     DateTime
-  updatedAt     DateTime
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
   author        User       @relation("WrittenPosts", fields: [authorId], references: [id])
   authorId      String
   favoritedBy   User?      @relation("FavoritePosts", fields: [favoritedById], references: [id])
@@ -42,6 +44,10 @@ model Category {
 model UserPreference {
   id             String  @id @default(uuid())
   userPreference Boolean
-  preference     User    @relation(fields: [userId], references: [id])
-  userId         String  @unique
+  User           User?
+}
+
+enum Role {
+  BASIC
+  ADMIN
 }

@@ -25,10 +25,17 @@ async function main() {
 
     const post = await prisma.post.findMany({
         where: {
-            AND: [{ author: { name: { startsWith: "Y" } } }, { rating: { gt: 2 } }]
+            author: {
+                is:{ 
+                    age: { gt: 20}
+                }
+            }
+            // AND: [{ author: { name: { startsWith: "Y" } } }, { rating: { gt: 2 } }]
         },
         select:{
-            author: { select: { name: true , email: true}}
+            author: { select: { name: true , email: true}},
+            favoritedBy: true,
+
         }
     })
     // .create({

@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import { equal } from 'assert';
 const prisma = new PrismaClient()
 
 async function main() {
@@ -55,29 +56,48 @@ async function main() {
     // })
 
 
-    const user = await prisma.user.update({
-        where: {
-            id: "fc67ad2d-1c13-4a79-9a5e-74fa19bffa05"
-        },
-        data:{
-             age: {
+    // const user = await prisma.user.update({
+    //     where: {
+    //         id: "fc67ad2d-1c13-4a79-9a5e-74fa19bffa05"
+    //     },
+    //     data:{
+    //          age: {
 
-                decrement: 1
-             }, 
-             userPreference:{
-                connect: {
-                    id: "ebeb01d6-afd1-4151-89ec-376732558ff8"
-                }
-             }
+    //             decrement: 1
+    //          }, 
+    //          userPreference:{
+    //             connect: {
+    //                 id: "ebeb01d6-afd1-4151-89ec-376732558ff8"
+    //             }
+    //          }
+    //     },
+    //     select: {
+    //         userPreference: true,
+    //          writtenPosts: { 
+    //             select: {
+    //                 title: true,
+    //                 rating: true
+    //             }
+    //          }
+    //     }
+    // })
+
+
+    // DELETE
+    // const user = await prisma.user.create({
+    //     data: {
+    //         name: "zeta",
+    //         email: "zeta@ret.com",
+    //         age: 5,
+    //         preferences: {}
+    //     }
+    // })
+    const user = await prisma.user.delete({
+        where:{
+            email: "zeta@ret.com"
         },
-        select: {
-            userPreference: true,
-             writtenPosts: { 
-                select: {
-                    title: true,
-                    rating: true
-                }
-             }
+        include: {
+             userPreference: true
         }
     })
     console.log(user);

@@ -4,10 +4,10 @@ const prisma = new PrismaClient()
 async function main() {
     const user = await prisma.user.findMany({
         where: {
-            AND: [{
-                name: { endsWith: "k" },
+            OR: [{
+                name: { startsWith: "b" },
 
-            }, { email: { contains: "@tdasest" } }
+            }, { age: { lt: 25 } }
             ],
         },
         // include:{

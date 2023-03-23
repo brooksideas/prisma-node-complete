@@ -2,42 +2,42 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 async function main() {
-    const user = await prisma.user.findMany({
-        // where: {
-        //    writtenPosts: {
-        //     some:{ 
-        //         title: {
-        //             startsWith: "Ca"
-        //         }
-        //     }
-        //    }
-        // },
-        // include:{
-        //    userPreference: true
-        // },
+    // const user = await prisma.user.findMany({
+    // where: {
+    //    writtenPosts: {
+    //     some:{ 
+    //         title: {
+    //             startsWith: "Ca"
+    //         }
+    //     }
+    //    }
+    // },
+    // include:{
+    //    userPreference: true
+    // },
 
-        // orderBy: {
-        //     age: "asc" //desc
-        // },
-        // take: 2,
-        // skip: 0
-    })
+    // orderBy: {
+    //     age: "asc" //desc
+    // },
+    // take: 2,
+    // skip: 0
+    // })
 
-    const post = await prisma.post.findMany({
-        where: {
-            author: {
-                is:{ 
-                    age: { gt: 20}
-                }
-            }
-            // AND: [{ author: { name: { startsWith: "Y" } } }, { rating: { gt: 2 } }]
-        },
-        select:{
-            author: { select: { name: true , email: true}},
-            favoritedBy: true,
+    // const post = await prisma.post.findMany({
+    //     where: {
+    //         author: {
+    //             is:{ 
+    //                 age: { gt: 20}
+    //             }
+    //         }
+    //         // AND: [{ author: { name: { startsWith: "Y" } } }, { rating: { gt: 2 } }]
+    //     },
+    //     select:{
+    //         author: { select: { name: true , email: true}},
+    //         favoritedBy: true,
 
-        }
-    })
+    //     }
+    // })
     // .create({
     // data: {
     //     authorId: "fc67ad2d-1c13-4a79-9a5e-74fa19bffa05",
@@ -46,7 +46,19 @@ async function main() {
     //     favoritedById: "3dc0691c-47a9-4e00-bc84-9abd3f46932a"
     // }
     // })
-    console.log(post);
+
+    const user = await prisma.user.update({
+        where: {
+            email: "brooks@tdasest.com"
+        },
+        data:{
+            email: "brooks@gmail.com"
+        },
+        include: {
+            favioritedPosts: true
+        }
+    })
+    console.log(user);
 }
 
 main()

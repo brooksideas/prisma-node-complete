@@ -49,13 +49,18 @@ async function main() {
 
     const user = await prisma.user.update({
         where: {
-            email: "brooks@tdasest.com"
+            id: "fc67ad2d-1c13-4a79-9a5e-74fa19bffa05"
         },
         data:{
-            email: "brooks@gmail.com"
+            email: "ydi@gmail.com"
         },
-        include: {
-            favioritedPosts: true
+        select: {
+             writtenPosts: { 
+                select: {
+                    title: true,
+                    rating: true
+                }
+             }
         }
     })
     console.log(user);

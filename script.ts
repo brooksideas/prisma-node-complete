@@ -1,5 +1,4 @@
 import { PrismaClient } from '@prisma/client'
-import { equal } from 'assert';
 const prisma = new PrismaClient()
 
 async function main() {
@@ -92,15 +91,15 @@ async function main() {
     //         preferences: {}
     //     }
     // })
-    const user = await prisma.user.delete({
-        where:{
-            email: "zeta@ret.com"
-        },
-        include: {
-             userPreference: true
-        }
-    })
-    console.log(user);
+    // const user = await prisma.user.delete({
+    //     where:{
+    //         email: "zeta@ret.com"
+    //     },
+    //     include: {
+    //          userPreference: true
+    //     }
+    // })
+    // console.log(user);
 }
 
 main()

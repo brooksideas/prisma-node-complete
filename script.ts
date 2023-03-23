@@ -2,13 +2,19 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 async function main() {
-    const user = await prisma.user.findUnique({
-        where:{
-            email: "ydis@tdasest.com"
+    const user = await prisma.user.findMany({
+        // where:{
+        //     age: 26
+        // },
+        // include:{
+        //     userPreference: true
+        // },
+
+        orderBy: {
+            age: "asc" //desc
         },
-        include:{
-            userPreference: true
-        }
+        take: 2,
+        skip: 0
     })
     console.log(user);
 }
